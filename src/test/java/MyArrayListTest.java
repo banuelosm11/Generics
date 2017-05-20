@@ -6,18 +6,21 @@ import org.junit.Test;
  * Created by aurorabanuelos on 5/19/17.
  */
 public class MyArrayListTest {
+
     public MyArrayList myArrayList;
     @Before
     public void setUp(){
         myArrayList = new MyArrayList();
         myArrayList.add(0, 7);
+        myArrayList.add(1, 10);
+        myArrayList.add(2, 13);
     }
 
 
     @Test
     public void addTest(){
         //Given
-        Integer itemToAdd = 10;
+        Integer itemToAdd = 12;
         boolean expected = true;
 
         //When
@@ -30,12 +33,25 @@ public class MyArrayListTest {
     @Test
     public void addWithParametersTest(){
         //Given
-        Integer itemToAdd = 10;
+        Integer itemToAdd = 12;
+        int i = 1;
+        Integer expected = 12;
+
+        //When
+        myArrayList.add(i, itemToAdd);
+        Integer actual = (Integer) myArrayList.get(i);
+
+        //Then
+        Assert.assertEquals("Should return 12", expected, actual);
+    }
+
+    @Test
+    public void getTest(){
+        //Given
         int i = 1;
         Integer expected = 10;
 
         //When
-        myArrayList.add(i, itemToAdd);
         Integer actual = (Integer) myArrayList.get(i);
 
         //Then
@@ -43,29 +59,16 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void getTest(){
-        //Given
-        int i = 0;
-        Integer expected = 7;
-
-        //When
-        Integer actual = (Integer) myArrayList.get(i);
-
-        //Then
-        Assert.assertEquals("Should return 7", expected, actual);
-    }
-
-    @Test
     public void removeTest(){
         //Given
-        int i = 0;
-        Integer expected = 7;
+        int i = 2;
+        Integer expected = 13;
 
         //When
         Integer actual = (Integer) myArrayList.remove(i);
 
         //Then
-        Assert.assertEquals("Should return 7", expected, actual);
+        Assert.assertEquals("Should return 13", expected, actual);
 
     }
 
@@ -106,10 +109,10 @@ public class MyArrayListTest {
     @Test
     public void containsTest(){
         //When
-        boolean actual = myArrayList.contains(7);
+        boolean actual = myArrayList.contains(30);
 
         //Then
-        Assert.assertEquals("should return true", true, actual);
+        Assert.assertEquals("should return false", false, actual);
     }
 
     @Test
@@ -118,7 +121,7 @@ public class MyArrayListTest {
         int actual = myArrayList.size();
 
         //Then
-        Assert.assertEquals("should equal 1", 1, actual);
+        Assert.assertEquals("should equal 3", 3, actual);
     }
 
     @Test
@@ -128,7 +131,7 @@ public class MyArrayListTest {
         int actual = myArrayList.size();
 
         //Then
-        Assert.assertEquals("should be 0", 0, actual);
+        Assert.assertEquals("should be 2", 2, actual);
 
     }
 }
